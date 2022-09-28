@@ -5,14 +5,20 @@
 package mx.itson.rimbombante.backend;
 
 /**
- *
+ * Contiene métodos para la obtención de la clave CURP
  * @author lm
  */
 public class Curp {
 
+    /**
+    * Obtiene la información para establecer los dígitos de la CURP.
+    * param:obtenerPrimerLetraYVocalInterna, primeraLetraSegundoApellido, primerLetraNombrePila, obtenerFecha, obtenerCodigoEstado, primerConsonanteInternaSegundoApellido
+    * return: Los datos de la primera vocal interna, primera letra del segundo apellido, primera letra del primer nombre, fecha de nacimiento, código de estado y la primer consonante interna del segundo apellido
+ */
+
     public static void main(String[] args) {
 
-        System.out.println(primerLetraYVocalInterna("meza")
+        System.out.println(obtenerPrimerLetraYVocalInterna("meza")
                 + primeraLetraSegundoApellido("acosta")
                 + primerLetraNombrePila("luis")
                 + obtenerFecha("06", "08", "2003")
@@ -22,7 +28,9 @@ public class Curp {
 
         System.out.println(primerLetra("Meza"));
     }
-// a
+/**
+* 
+ */
     public String obtenerCurp(
             String nombres,
             String primerApellido,
@@ -37,10 +45,16 @@ public class Curp {
         primerApellido = limpiarPalabra(primerApellido);
         segundoApellido = limpiarPalabra(segundoApellido);
 
-        String curp = primerLetraYVocalInterna(nombres) + primeraLetraSegundoApellido(primerApellido);
+        String curp = obtenerPrimerLetraYVocalInterna(nombres) + obtenerPrimeraLetraSegundoApellido(primerApellido);
 
         return curp;
     }
+
+    /**
+    * Limpia la palabra de espacios, reemplazando también los acentos de cada vocal haciendo que esta se convierta en mayúsculas.
+    * param: palabra 
+    * return: la palabra sin espacios al inicio ni al final, removiendo los acentos 
+     */
 
     static String limpiarPalabra(String palabra) {
         return palabra.trim()
@@ -50,8 +64,12 @@ public class Curp {
                 .replace('ó', 'o')
                 .replace('ú', 'u').toUpperCase();
     }
-
-    static char primerVocalInterna(String palabra) {
+/**
+* Obtiene la primera vocal interna de la palabra, empezando por la primera posición de caracteres saltando posiciónes hasta llegar a la vocal
+* param: obtenerPrimerVocalInterna, palabra, vocales
+* return: el caracter que sea la primera vocal interna del nombre.
+ */
+    static char obtenerPrimerVocalInterna(String palabra) {
         String vocales = "AEIOU";
 
         for (int i = 1; 0 <= palabra.length(); i++) {
@@ -62,8 +80,12 @@ public class Curp {
 
         return ' ';
     }
-
-    static char primerConsonanteInterna(String palabra) {
+/**
+* Obtiene el primer caracter consonante interno del nombre o la palabra ingresada
+* param: obtenerPrimerConsonanteInterna, palabra, vocales
+* return: el caracter de la palabra que sea la primer consonante interna del nombre o palabra ingresada.
+ */
+    static char obtenerPrimerConsonanteInterna(String palabra) {
         String vocales = "AEIOU";
 
         for (int i = 1; 0 <= palabra.length(); i++) {
@@ -74,37 +96,73 @@ public class Curp {
 
         return ' ';
     }
+/**
+* Obtiene la primer letra y vocal interna separándola con arreglo de caracteres, dependiendo la posición, la primera posición (0) se recorre.
+* param: obtenerPrimerLetraYVocalInterna palabra
+* return: la primera vocal interna de palabra
+ */
 
-    static String primerLetraYVocalInterna(String palabra) {
+    static String obtenerPrimerLetraYVocalInterna(String palabra) {
         char[] letras = {palabra.charAt(0), primerVocalInterna(palabra)};
 
         return new String(letras);
     }
-
-    static public char primerLetra(String apellidoPaterno) {
+/**
+* Obtiene la primera letra del primer apellido
+* param: obtenerPrimerLetra, apellidoPaterno
+* return: Un caracter que es la primera letra del primer apellido
+ */
+    static public char obtenerPrimerLetra(String apellidoPaterno) {
         return apellidoPaterno.charAt(0);
     }
+/**
+* Obtiene la primera letra del segundo apellido
+* param: obtenerPrimerLetra, segundoApellido
+* return: Un caracter que es la primera letra del segundo apellido
+ */
 
-    static char primeraLetraSegundoApellido(String segundoApellido) {
+    static char obtenerPrimeraLetraSegundoApellido(String segundoApellido) {
         return segundoApellido.charAt(0);
     }
-
-    static char primerLetraNombrePila(String nombrePila) {
+/**
+* Obtiene el primer caracter del primer nombre
+* param: obtenerPrimerLetraNombrePila, nombrePila
+* return: el caracter que se encuentra en la primera posición del nombre de pila o primer nombre
+ */
+    static char obtenerPrimerLetraNombrePila(String nombrePila) {
         return nombrePila.charAt(0);
     }
-
-    static char primerConsonanteInternaPrimerApellido(String primerApellido) {
+    
+/**
+* Obtiene la primer letra consonante interna del primer apellido o del apellido paterno
+* param: obtenerPrimerConsonanteInternaPrimerApellido, primerApellido
+* return: la primera letra consonante interna del primer apellido o del apellido paterno.
+ */
+    static char obtenerPrimerConsonanteInternaPrimerApellido(String primerApellido) {
         return primerConsonanteInterna(primerApellido);
     }
-
-    static char primerConsonanteInternaSegundoApellido(String segundoApellido) {
+/**
+* Obtiene la primer consonante interna del segundo apellido o del apellido materno
+* param: obtenerPrimerConsonanteInternaSegundoApellido, segundoApellido
+* return: la primer letra consonante dentro del segundo apellido o del apellido materno.
+ */
+    static char obtenerPrimerConsonanteInternaSegundoApellido(String segundoApellido) {
         return primerConsonanteInterna(segundoApellido);
     }
-
+/**
+* Obtiene fecha de nacimiento partiendo del dia, mes, año
+* param: obtenerFecha, dia, mes, anio
+* return: dos dígitos para el día, mes y año correspondientes de los datos ingresados.
+    Acá se mencionaba que eran 2 dígitos para el día, para el mes y año, no sé si lo habrás puesto
+ */
     public static String obtenerFecha(String dia, String mes, String anio) {
         return anio.charAt(2) + "" + anio.charAt(3) + mes + dia;
     }
-
+/**
+* Establece cada código de cada estado equivalente a la pertenencia de cada individuo.
+* param: obtenerCodigoEstado
+* return: el código hecho en dos cifras para determinar la pertenencia del individuo.
+ */
     public static String obtenerCodigoEstado(String estado) {
         switch (estado) {
             case "Aguascalientes":
@@ -112,7 +170,7 @@ public class Curp {
             case "Baja California":
                 return "BC";
             case "Baja California Sur":
-                return "Bs";
+                return "BS";
             case "Campeche":
                 return "CC";
             case "Coahuila de Zaragoza":
