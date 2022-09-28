@@ -5,6 +5,7 @@
 package mx.itson.rimbombante.frontend;
 
 import mx.itson.rimbombante.backend.Curp;
+import mx.itson.rimbombante.backend.Sexos;
 
 /**
  *
@@ -29,60 +30,103 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jcbDiaNacimiento = new javax.swing.JComboBox<>();
         lblResultado = new javax.swing.JLabel();
+        txtNombres = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        txtPrimerApellido = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtSegundoApellido = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        cbxDiaNacimiento = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtAnioNacimiento = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        cbxMesNacimiento = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        cbxEstados = new javax.swing.JComboBox<>();
+        cbxSexos = new javax.swing.JComboBox<>();
+        btnAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(627, 449));
 
-        jcbDiaNacimiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sonora" }));
-        jcbDiaNacimiento.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setPreferredSize(new java.awt.Dimension(627, 447));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(lblResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 293, 36));
+        jPanel1.add(txtNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 34, 177, -1));
+
+        jLabel1.setText("Nombre(s)*:");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
+        jPanel1.add(txtPrimerApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 34, 177, -1));
+
+        jLabel2.setText("Primer Apellido*:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 6, -1, -1));
+
+        jLabel3.setText("Segundo apellido:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 77, -1, -1));
+        jPanel1.add(txtSegundoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 105, 177, -1));
+
+        jLabel4.setText("Día de nacimiento*:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 77, -1, -1));
+
+        cbxDiaNacimiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        jPanel1.add(cbxDiaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 102, 177, 28));
+
+        jLabel5.setText("Mes de nacimiento*:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 148, -1, -1));
+
+        jLabel6.setText("Año de nacimiento*:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 148, -1, -1));
+        jPanel1.add(txtAnioNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 174, 177, -1));
+
+        jLabel7.setText("Sexo*:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 217, -1, -1));
+
+        cbxMesNacimiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+        jPanel1.add(cbxMesNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 174, 177, -1));
+
+        jLabel8.setText("Estado*:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 217, -1, -1));
+
+        cbxEstados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Chiapas", "Chihuahua", "Ciudad de México", "Coahuila", "Colima", "Durango", "Estado de México", "Guanajuato", "Guerrero", "Hidalgo", "Jalisco", "Michoacán", "Morelos", "Nayarit", "Nuevo León", "Oaxaca", "Puebla", "Querétaro", "Quintana Roo", "San Luis Potosí", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas", "Tlaxcala", "Veracruz", "Yucatán", "Zacatecas" }));
+        jPanel1.add(cbxEstados, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 242, 177, 28));
+
+        cbxSexos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mujer", "Hombre", "No binario" }));
+        jPanel1.add(cbxSexos, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 242, 177, 28));
+
+        btnAceptar.setText("jButton1");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbDiaNacimientoActionPerformed(evt);
+                btnAceptarActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jcbDiaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
-                .addComponent(lblResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(147, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(jcbDiaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(lblResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(126, Short.MAX_VALUE))
-        );
+        jPanel1.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 3, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jcbDiaNacimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbDiaNacimientoActionPerformed
-      Curp curp = new Curp();
-      
-      lblResultado.setText(curp.obtenerCodigoEstado(jcbDiaNacimiento.getSelectedItem().toString()));
-    }//GEN-LAST:event_jcbDiaNacimientoActionPerformed
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        Curp curp = new Curp();
+        
+        String c = curp.obtenerCurp(txtNombres.getText(), txtPrimerApellido.getText(), txtSegundoApellido.getText(), cbxDiaNacimiento.getSelectedItem().toString(), cbxMesNacimiento.getSelectedItem().toString(), txtAnioNacimiento.getText(), Sexos.MUJER, cbxEstados.getSelectedItem().toString());
+        
+        lblResultado.setText(c);
+    }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,8 +164,24 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptar;
+    private javax.swing.JComboBox<String> cbxDiaNacimiento;
+    private javax.swing.JComboBox<String> cbxEstados;
+    private javax.swing.JComboBox<String> cbxMesNacimiento;
+    private javax.swing.JComboBox<String> cbxSexos;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JComboBox<String> jcbDiaNacimiento;
     private javax.swing.JLabel lblResultado;
+    private javax.swing.JTextField txtAnioNacimiento;
+    private javax.swing.JTextField txtNombres;
+    private javax.swing.JTextField txtPrimerApellido;
+    private javax.swing.JTextField txtSegundoApellido;
     // End of variables declaration//GEN-END:variables
 }

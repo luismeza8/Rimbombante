@@ -19,22 +19,44 @@ public class Curp {
                 + obtenerCodigoEstado("Sonora")
                 + primerConsonanteInternaSegundoApellido("acosta")
         );
+
+        System.out.println(primerLetra("Meza"));
     }
-    
-    static String obtenerCurp(String nombres, String primerApellido){
-        String curp = primerLetraYVocalInterna(nombres) + primeraLetraSegundoApellido(primerApellido);
+
+    public String obtenerCurp(
+            String nombres,
+            String primerApellido,
+            String segundoApellido,
+            String diaNacimiento,
+            String mesNacimineto,
+            String anioNacimiento,
+            Sexos sexo,
+            String estado) {
         
+        nombres = limpiarPalabra(nombres);
+        primerApellido = limpiarPalabra(primerApellido);
+        segundoApellido = limpiarPalabra(segundoApellido);
+
+        String curp = primerLetraYVocalInterna(nombres) + primeraLetraSegundoApellido(primerApellido);
+
         return curp;
     }
 
-    static char primerVocalInterna(String palabra) {
-        String palabraMayuscula = palabra.toUpperCase();
+    static String limpiarPalabra(String palabra) {
+        return palabra.trim()
+                .replace('á', 'a')
+                .replace('é', 'e')
+                .replace('í', 'i')
+                .replace('ó', 'o')
+                .replace('ú', 'u').toUpperCase();
+    }
 
+    static char primerVocalInterna(String palabra) {
         String vocales = "AEIOU";
 
-        for (int i = 1; 0 <= palabraMayuscula.length(); i++) {
-            if (vocales.contains(String.valueOf(palabraMayuscula.charAt(i)))) {
-                return palabraMayuscula.charAt(i);
+        for (int i = 1; 0 <= palabra.length(); i++) {
+            if (vocales.contains(String.valueOf(palabra.charAt(i)))) {
+                return palabra.charAt(i);
             }
         }
 
@@ -42,13 +64,11 @@ public class Curp {
     }
 
     static char primerConsonanteInterna(String palabra) {
-        String palabraMayuscula = palabra.toUpperCase();
-
         String vocales = "AEIOU";
 
-        for (int i = 1; 0 <= palabraMayuscula.length(); i++) {
-            if (!vocales.contains(String.valueOf(palabraMayuscula.charAt(i)))) {
-                return palabraMayuscula.charAt(i);
+        for (int i = 1; 0 <= palabra.length(); i++) {
+            if (!vocales.contains(String.valueOf(palabra.charAt(i)))) {
+                return palabra.charAt(i);
             }
         }
 
@@ -56,17 +76,21 @@ public class Curp {
     }
 
     static String primerLetraYVocalInterna(String palabra) {
-        char[] letras = {palabra.toUpperCase().charAt(0), primerVocalInterna(palabra)};
+        char[] letras = {palabra.charAt(0), primerVocalInterna(palabra)};
 
         return new String(letras);
     }
 
+    static public char primerLetra(String apellidoPaterno) {
+        return apellidoPaterno.charAt(0);
+    }
+
     static char primeraLetraSegundoApellido(String segundoApellido) {
-        return segundoApellido.toUpperCase().charAt(0);
+        return segundoApellido.charAt(0);
     }
 
     static char primerLetraNombrePila(String nombrePila) {
-        return nombrePila.toUpperCase().charAt(0);
+        return nombrePila.charAt(0);
     }
 
     static char primerConsonanteInternaPrimerApellido(String primerApellido) {
@@ -76,12 +100,12 @@ public class Curp {
     static char primerConsonanteInternaSegundoApellido(String segundoApellido) {
         return primerConsonanteInterna(segundoApellido);
     }
-    
-    public static String obtenerFecha(String dia, String mes, String anio){
+
+    public static String obtenerFecha(String dia, String mes, String anio) {
         return anio.charAt(2) + "" + anio.charAt(3) + mes + dia;
     }
-    
-    public static String obtenerCodigoEstado(String estado){
+
+    public static String obtenerCodigoEstado(String estado) {
         switch (estado) {
             case "Aguascalientes":
                 return "AS";

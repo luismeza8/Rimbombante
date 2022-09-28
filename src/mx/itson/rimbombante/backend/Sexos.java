@@ -9,5 +9,7 @@ package mx.itson.rimbombante.backend;
  * @author lm
  */
 public enum Sexos {
-    
+    HOMBRE,
+    MUJER,
+    NOBINARIO
 }
