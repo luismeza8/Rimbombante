@@ -22,7 +22,7 @@ public class Curp {
 
         System.out.println(primerLetra("Meza"));
     }
-
+// a
     public String obtenerCurp(
             String nombres,
             String primerApellido,
