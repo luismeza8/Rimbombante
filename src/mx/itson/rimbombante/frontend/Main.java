@@ -48,14 +48,14 @@ public class Main extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         cbxEstados = new javax.swing.JComboBox<>();
         cbxSexos = new javax.swing.JComboBox<>();
-        btnAceptar = new javax.swing.JButton();
+        btnGenerar = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(627, 449));
 
         jPanel1.setPreferredSize(new java.awt.Dimension(627, 447));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(lblResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 293, 36));
+        jPanel1.add(lblResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 293, 36));
 
         txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -122,13 +122,16 @@ public class Main extends javax.swing.JFrame {
         cbxSexos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mujer", "Hombre", "No binario" }));
         jPanel1.add(cbxSexos, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 242, 177, 28));
 
-        btnAceptar.setText("jButton1");
-        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+        btnGenerar.setText("Generar");
+        btnGenerar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAceptarActionPerformed(evt);
+                btnGenerarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
+        jPanel1.add(btnGenerar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
+
+        jLabel9.setText("* Campos Obligatorios");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -146,35 +149,48 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
 
         Curp curp = new Curp();
-        
+
         Sexo sexo = Sexo.MUJER;
-        
-        if(cbxSexos.getSelectedItem().equals("Hombre")){
+        String segundoApellido = "x";
+
+        if (cbxSexos.getSelectedItem().equals("Hombre")) {
             sexo = Sexo.HOMBRE;
-        } else if(cbxSexos.getSelectedItem().equals("Mujer")){
+        } else if (cbxSexos.getSelectedItem().equals("Mujer")) {
             sexo = Sexo.MUJER;
         } else {
             sexo = Sexo.NOBINARIO;
         }
 
-        String c = curp.obtenerCurp(txtNombres.getText(),
-                txtPrimerApellido.getText(),
-                txtSegundoApellido.getText(),
-                cbxDiaNacimiento.getSelectedItem().toString(),
-                cbxMesNacimiento.getSelectedItem().toString(),
-                Integer.parseInt(txtAnioNacimiento.getText()),
-                sexo,
-                cbxEstados.getSelectedItem().toString());
+        if (txtSegundoApellido.getText().equals("")) {
+            segundoApellido = "x";
+        } else {
+            segundoApellido = txtSegundoApellido.getText();
+        }
 
-        lblResultado.setText(c);
-    }//GEN-LAST:event_btnAceptarActionPerformed
+        try {
+            String curpCompleta
+                    = curp.obtenerCurp(
+                            txtNombres.getText(),
+                            txtPrimerApellido.getText(),
+                            segundoApellido,
+                            cbxDiaNacimiento.getSelectedItem().toString(),
+                            cbxMesNacimiento.getSelectedItem().toString(),
+                            Integer.parseInt(txtAnioNacimiento.getText()),
+                            sexo,
+                            cbxEstados.getSelectedItem().toString());
+
+            lblResultado.setText("Tu CURP es: " + curpCompleta);
+        } catch (Exception e) {
+            lblResultado.setText("Favor de llenar todos los campos.");
+        }
+    }//GEN-LAST:event_btnGenerarActionPerformed
 
     private void txtNombresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyPressed
         char tecla = evt.getKeyChar();
-        
+
         // Este if valida que solo se puedan ingresar letras
         if (Character.isLetter(tecla) || Character.isWhitespace(tecla) || Character.isISOControl(tecla)) {
             txtNombres.setEditable(true);
@@ -185,9 +201,9 @@ public class Main extends javax.swing.JFrame {
 
     private void txtPrimerApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrimerApellidoKeyPressed
         char tecla = evt.getKeyChar();
-        
+
         // Este if valida que solo se puedan ingresar letras
-        if (Character.isLetter(tecla) || Character.isWhitespace(tecla) || Character.isISOControl(tecla)) {
+        if (Character.isLetter(tecla) || Character.isISOControl(tecla)) {
             txtPrimerApellido.setEditable(true);
         } else {
             txtPrimerApellido.setEditable(false);
@@ -198,7 +214,7 @@ public class Main extends javax.swing.JFrame {
         char tecla = evt.getKeyChar();
 
         // Este if valida que solo se puedan ingresar letras
-        if (Character.isLetter(tecla) || Character.isWhitespace(tecla) || Character.isISOControl(tecla)) {
+        if (Character.isLetter(tecla) || Character.isISOControl(tecla)) {
             txtSegundoApellido.setEditable(true);
         } else {
             txtSegundoApellido.setEditable(false);
@@ -208,7 +224,7 @@ public class Main extends javax.swing.JFrame {
     private void txtAnioNacimientoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAnioNacimientoKeyPressed
         char tecla = evt.getKeyChar();
         String anio = txtAnioNacimiento.getText();
-        
+
         // Este if valida que solo se puedan ingresar números y solo 4
         if (Character.isDigit(tecla)) {
             if (anio.length() < 4) {
@@ -261,7 +277,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnGenerar;
     private javax.swing.JComboBox<String> cbxDiaNacimiento;
     private javax.swing.JComboBox<String> cbxEstados;
     private javax.swing.JComboBox<String> cbxMesNacimiento;
@@ -274,6 +290,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblResultado;
     private javax.swing.JTextField txtAnioNacimiento;
