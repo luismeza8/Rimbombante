@@ -80,7 +80,7 @@ public class Curp {
     static char obtenerPrimerVocalInterna(String palabra) {
         String vocales = "AEIOU";
 
-        for (int i = 1; 0 <= palabra.length(); i++) {
+        for (int i = 1; i <= palabra.length(); i++) {
             if (vocales.contains(String.valueOf(palabra.charAt(i)))) {
                 return palabra.charAt(i);
             }
@@ -98,7 +98,7 @@ public class Curp {
     static char obtenerPrimerConsonanteInterna(String palabra) {
         String vocales = "BCDFGHJKLMÑPQRSTVWXYZ";
 
-        for (int i = 1; 0 <= palabra.length(); i++) {
+        for (int i = 1; i <= palabra.length(); i++) {
             if (vocales.contains(String.valueOf(palabra.charAt(i)))) {
                 return palabra.charAt(i);
             }
