@@ -4,6 +4,8 @@
  */
 package mx.itson.rimbombante.backend;
 
+import mx.itson.rimbombante.backend.enumeradores.Sexo;
+
 /**
  * Contiene métodos para la obtención de la clave CURP
  * @author lm
@@ -16,17 +18,7 @@ public class Curp {
     * return: Los datos de la primera vocal interna, primera letra del segundo apellido, primera letra del primer nombre, fecha de nacimiento, código de estado y la primer consonante interna del segundo apellido
  */
 
-    public static void main(String[] args) {
-
-        System.out.println(obtenerPrimerLetraYVocalInterna("meza")
-                + obtenerPrimeraLetraSegundoApellido("acosta")
-                + obtenerPrimerLetraNombrePila("luis")
-                + obtenerFecha("06", "08", "2003")
-                + obtenerCodigoEstado("Sonora")
-                + obtenerPrimerConsonanteInternaSegundoApellido("acosta")
-        );
-
-    }
+    
 /**
 * 
  */
@@ -36,15 +28,26 @@ public class Curp {
             String segundoApellido,
             String diaNacimiento,
             String mesNacimineto,
-            String anioNacimiento,
-            Sexos sexo,
+            int anioNacimiento,
+            Sexo sexo,
             String estado) {
         
         nombres = limpiarPalabra(nombres);
         primerApellido = limpiarPalabra(primerApellido);
         segundoApellido = limpiarPalabra(segundoApellido);
 
-        String curp = obtenerPrimerLetraYVocalInterna(nombres) + obtenerPrimeraLetraSegundoApellido(primerApellido);
+        String curp = obtenerPrimerLetraYVocalInterna(primerApellido)
+                + obtenerPrimeraLetraSegundoApellido(segundoApellido)
+                + obtenerPrimerLetraNombrePila(nombres)
+                + obtenerFechaNacimiento(diaNacimiento, mesNacimineto, anioNacimiento)
+                + obtenerSexo(sexo)
+                + obtenerCodigoEstado(estado)
+                + obtenerPrimerConsonanteInternaPrimerApellido(primerApellido)
+                + obtenerPrimerConsonanteInternaSegundoApellido(segundoApellido)
+                + obtenerPrimerConsonanteInterna(nombres)
+                + obtenerCaracterSegunAnio(anioNacimiento)
+                + '1'
+                ;
 
         return curp;
     }
@@ -85,10 +88,10 @@ public class Curp {
 * return: el caracter de la palabra que sea la primer consonante interna del nombre o palabra ingresada.
  */
     static char obtenerPrimerConsonanteInterna(String palabra) {
-        String vocales = "AEIOU";
+        String vocales = "BCDFGHJKLMÑPQRSTVWXYZ";
 
         for (int i = 1; 0 <= palabra.length(); i++) {
-            if (!vocales.contains(String.valueOf(palabra.charAt(i)))) {
+            if (vocales.contains(String.valueOf(palabra.charAt(i)))) {
                 return palabra.charAt(i);
             }
         }
@@ -154,8 +157,10 @@ public class Curp {
 * return: dos dígitos para el día, mes y año correspondientes de los datos ingresados.
     Acá se mencionaba que eran 2 dígitos para el día, para el mes y año, no sé si lo habrás puesto
  */
-    public static String obtenerFecha(String dia, String mes, String anio) {
-        return anio.charAt(2) + "" + anio.charAt(3) + mes + dia;
+    public static String obtenerFechaNacimiento(String dia, String mes, int anio) {
+        String anioString = "" + anio;
+        
+        return anioString.charAt(2) + "" + anioString.charAt(3) + mes + dia;
     }
 /**
 * Establece cada código de cada estado equivalente a la pertenencia de cada individuo.
@@ -232,6 +237,27 @@ public class Curp {
                 return "NE";
             default:
                 return " ";
+        }
+    }
+    
+    static char obtenerSexo(Sexo sexo){
+        switch (sexo) {
+            case HOMBRE:
+                return 'H';
+            case MUJER:
+                return 'M';
+            case NOBINARIO:
+                return 'X';
+            default:
+                throw new AssertionError();
+        }
+    }
+    
+    static char obtenerCaracterSegunAnio(int anio){
+        if(anio >= 2000){
+            return 'A';
+        } else {
+            return '0';
         }
     }
 

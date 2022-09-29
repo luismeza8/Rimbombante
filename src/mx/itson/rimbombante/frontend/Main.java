@@ -6,7 +6,7 @@ package mx.itson.rimbombante.frontend;
 
 import java.awt.event.KeyEvent;
 import mx.itson.rimbombante.backend.Curp;
-import mx.itson.rimbombante.backend.Sexos;
+import mx.itson.rimbombante.backend.enumeradores.Sexo;
 
 /**
  *
@@ -90,7 +90,7 @@ public class Main extends javax.swing.JFrame {
         jLabel4.setText("Día de nacimiento*:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 77, -1, -1));
 
-        cbxDiaNacimiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbxDiaNacimiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         jPanel1.add(cbxDiaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 102, 177, 28));
 
         jLabel5.setText("Mes de nacimiento*:");
@@ -149,15 +149,33 @@ public class Main extends javax.swing.JFrame {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
 
         Curp curp = new Curp();
+        
+        Sexo sexo = Sexo.MUJER;
+        
+        if(cbxSexos.getSelectedItem().equals("Hombre")){
+            sexo = Sexo.HOMBRE;
+        } else if(cbxSexos.getSelectedItem().equals("Mujer")){
+            sexo = Sexo.MUJER;
+        } else {
+            sexo = Sexo.NOBINARIO;
+        }
 
-        String c = curp.obtenerCurp(txtNombres.getText(), txtPrimerApellido.getText(), txtSegundoApellido.getText(), cbxDiaNacimiento.getSelectedItem().toString(), cbxMesNacimiento.getSelectedItem().toString(), txtAnioNacimiento.getText(), Sexos.MUJER, cbxEstados.getSelectedItem().toString());
+        String c = curp.obtenerCurp(txtNombres.getText(),
+                txtPrimerApellido.getText(),
+                txtSegundoApellido.getText(),
+                cbxDiaNacimiento.getSelectedItem().toString(),
+                cbxMesNacimiento.getSelectedItem().toString(),
+                Integer.parseInt(txtAnioNacimiento.getText()),
+                sexo,
+                cbxEstados.getSelectedItem().toString());
 
         lblResultado.setText(c);
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void txtNombresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyPressed
         char tecla = evt.getKeyChar();
-
+        
+        // Este if valida que solo se puedan ingresar letras
         if (Character.isLetter(tecla) || Character.isWhitespace(tecla) || Character.isISOControl(tecla)) {
             txtNombres.setEditable(true);
         } else {
@@ -167,7 +185,8 @@ public class Main extends javax.swing.JFrame {
 
     private void txtPrimerApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrimerApellidoKeyPressed
         char tecla = evt.getKeyChar();
-
+        
+        // Este if valida que solo se puedan ingresar letras
         if (Character.isLetter(tecla) || Character.isWhitespace(tecla) || Character.isISOControl(tecla)) {
             txtPrimerApellido.setEditable(true);
         } else {
@@ -178,6 +197,7 @@ public class Main extends javax.swing.JFrame {
     private void txtSegundoApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSegundoApellidoKeyPressed
         char tecla = evt.getKeyChar();
 
+        // Este if valida que solo se puedan ingresar letras
         if (Character.isLetter(tecla) || Character.isWhitespace(tecla) || Character.isISOControl(tecla)) {
             txtSegundoApellido.setEditable(true);
         } else {
@@ -188,7 +208,8 @@ public class Main extends javax.swing.JFrame {
     private void txtAnioNacimientoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAnioNacimientoKeyPressed
         char tecla = evt.getKeyChar();
         String anio = txtAnioNacimiento.getText();
-
+        
+        // Este if valida que solo se puedan ingresar números y solo 4
         if (Character.isDigit(tecla)) {
             if (anio.length() < 4) {
                 txtAnioNacimiento.setEditable(true);
