@@ -14,13 +14,16 @@ import mx.itson.rimbombante.backend.enumeradores.Sexo;
 public class Curp {
 
     /**
-     * Obtiene la información para establecer los dígitos de la CURP.
-     * param:obtenerPrimerLetraYVocalInterna, primeraLetraSegundoApellido,
-     * primerLetraNombrePila, obtenerFecha, obtenerCodigoEstado,
-     * primerConsonanteInternaSegundoApellido return: Los datos de la primera
-     * vocal interna, primera letra del segundo apellido, primera letra del
-     * primer nombre, fecha de nacimiento, código de estado y la primer
-     * consonante interna del segundo apellido
+     * Pide toda la información necesaria para hacer la curp
+     * @param nombres Nombre(s) del usuario
+     * @param primerApellido Primer Apellido del usuario
+     * @param segundoApellido Segundo Apellido del usuario
+     * @param diaNacimiento Dia de nacimineto del usuario
+     * @param mesNacimineto Mes de nacimiento del usuario
+     * @param anioNacimiento Año de nacimiento  del usuario
+     * @param sexo Sexo del usuario
+     * @param estado Estado de nacimiento del usuario
+     * @return La CURP completa
      */
     public String obtenerCurp(
             String nombres,
@@ -187,7 +190,7 @@ public class Curp {
                 return "BS";
             case "Campeche":
                 return "CC";
-            case "Coahuila de Zaragoza":
+            case "Coahuila":
                 return "CL";
             case "Colima":
                 return "CM";
@@ -195,7 +198,7 @@ public class Curp {
                 return "CS";
             case "Chihuahua":
                 return "CH";
-            case "Distrito Federal":
+            case "Ciudad de México":
                 return "DF";
             case "Durango":
                 return "DG";
@@ -209,7 +212,7 @@ public class Curp {
                 return "JC";
             case "México":
                 return "MC";
-            case "Michoacán de Ocampo":
+            case "Michoacán":
                 return "MN";
             case "Morelos":
                 return "MS";
@@ -252,7 +255,6 @@ public class Curp {
 
     /**
      * Regresa un caracter según el sexo
-     *
      * @param sexo El enum sexo
      * @return El caracter correspondiente al sexo
      */
@@ -270,9 +272,9 @@ public class Curp {
     }
 
     /**
-     *
-     * @param anio
-     * @return
+     * Regresa el caracter correspondiente al año dado
+     * @param anio El entero correpondiente al año
+     * @return El caracter correspondiente
      */
     static char obtenerCaracterSegunAnio(int anio) {
         if (anio >= 2000) {
@@ -282,6 +284,11 @@ public class Curp {
         }
     }
 
+    /**
+     * Este metodo se encarga de comprobar si el nombre es compuesto
+     * @param nombres Los nombres
+     * @return El primer o segundo nombre, según corresponda
+     */
     static String obtenerNombreCompuesto(String nombres) {
         String[] arrayNombres = nombres.split(" ");
 

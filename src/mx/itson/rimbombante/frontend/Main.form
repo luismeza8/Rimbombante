@@ -255,7 +255,7 @@
         <Component class="javax.swing.JComboBox" name="cbxEstados">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="32">
+              <StringArray count="33">
                 <StringItem index="0" value="Aguascalientes"/>
                 <StringItem index="1" value="Baja California"/>
                 <StringItem index="2" value="Baja California Sur"/>
@@ -288,6 +288,7 @@
                 <StringItem index="29" value="Veracruz"/>
                 <StringItem index="30" value="Yucat&#xe1;n"/>
                 <StringItem index="31" value="Zacatecas"/>
+                <StringItem index="32" value="Nacido en el Extranjero"/>
               </StringArray>
             </Property>
           </Properties>
