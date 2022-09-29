@@ -4,6 +4,7 @@
  */
 package mx.itson.rimbombante.frontend;
 
+import java.awt.event.KeyEvent;
 import mx.itson.rimbombante.backend.Curp;
 import mx.itson.rimbombante.backend.Sexos;
 
@@ -55,10 +56,22 @@ public class Main extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(627, 447));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(lblResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 293, 36));
+
+        txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombresKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 34, 177, -1));
 
         jLabel1.setText("Nombre(s)*:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, -1, -1));
+
+        txtPrimerApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPrimerApellidoKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtPrimerApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 34, 177, -1));
 
         jLabel2.setText("Primer Apellido*:");
@@ -66,6 +79,12 @@ public class Main extends javax.swing.JFrame {
 
         jLabel3.setText("Segundo apellido:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 77, -1, -1));
+
+        txtSegundoApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSegundoApellidoKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtSegundoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 105, 177, -1));
 
         jLabel4.setText("Día de nacimiento*:");
@@ -79,6 +98,13 @@ public class Main extends javax.swing.JFrame {
 
         jLabel6.setText("Año de nacimiento*:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 148, -1, -1));
+
+        txtAnioNacimiento.setToolTipText("");
+        txtAnioNacimiento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtAnioNacimientoKeyPressed(evt);
+            }
+        });
         jPanel1.add(txtAnioNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 174, 177, -1));
 
         jLabel7.setText("Sexo*:");
@@ -121,12 +147,62 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+
         Curp curp = new Curp();
-        
+
         String c = curp.obtenerCurp(txtNombres.getText(), txtPrimerApellido.getText(), txtSegundoApellido.getText(), cbxDiaNacimiento.getSelectedItem().toString(), cbxMesNacimiento.getSelectedItem().toString(), txtAnioNacimiento.getText(), Sexos.MUJER, cbxEstados.getSelectedItem().toString());
-        
+
         lblResultado.setText(c);
     }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void txtNombresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombresKeyPressed
+        char tecla = evt.getKeyChar();
+
+        if (Character.isLetter(tecla) || Character.isWhitespace(tecla) || Character.isISOControl(tecla)) {
+            txtNombres.setEditable(true);
+        } else {
+            txtNombres.setEditable(false);
+        }
+    }//GEN-LAST:event_txtNombresKeyPressed
+
+    private void txtPrimerApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrimerApellidoKeyPressed
+        char tecla = evt.getKeyChar();
+
+        if (Character.isLetter(tecla) || Character.isWhitespace(tecla) || Character.isISOControl(tecla)) {
+            txtPrimerApellido.setEditable(true);
+        } else {
+            txtPrimerApellido.setEditable(false);
+        }
+    }//GEN-LAST:event_txtPrimerApellidoKeyPressed
+
+    private void txtSegundoApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSegundoApellidoKeyPressed
+        char tecla = evt.getKeyChar();
+
+        if (Character.isLetter(tecla) || Character.isWhitespace(tecla) || Character.isISOControl(tecla)) {
+            txtSegundoApellido.setEditable(true);
+        } else {
+            txtSegundoApellido.setEditable(false);
+        }
+    }//GEN-LAST:event_txtSegundoApellidoKeyPressed
+
+    private void txtAnioNacimientoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAnioNacimientoKeyPressed
+        char tecla = evt.getKeyChar();
+        String anio = txtAnioNacimiento.getText();
+
+        if (Character.isDigit(tecla)) {
+            if (anio.length() < 4) {
+                txtAnioNacimiento.setEditable(true);
+            } else {
+                txtAnioNacimiento.setEditable(false);
+            }
+        } else {
+            if (evt.getExtendedKeyCode() == KeyEvent.VK_BACK_SPACE || evt.getExtendedKeyCode() == KeyEvent.VK_DELETE) {
+                txtAnioNacimiento.setEditable(true);
+            } else {
+                txtAnioNacimiento.setEditable(false);
+            }
+        }
+    }//GEN-LAST:event_txtAnioNacimientoKeyPressed
 
     /**
      * @param args the command line arguments

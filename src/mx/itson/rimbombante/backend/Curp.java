@@ -19,14 +19,13 @@ public class Curp {
     public static void main(String[] args) {
 
         System.out.println(obtenerPrimerLetraYVocalInterna("meza")
-                + primeraLetraSegundoApellido("acosta")
-                + primerLetraNombrePila("luis")
+                + obtenerPrimeraLetraSegundoApellido("acosta")
+                + obtenerPrimerLetraNombrePila("luis")
                 + obtenerFecha("06", "08", "2003")
                 + obtenerCodigoEstado("Sonora")
-                + primerConsonanteInternaSegundoApellido("acosta")
+                + obtenerPrimerConsonanteInternaSegundoApellido("acosta")
         );
 
-        System.out.println(primerLetra("Meza"));
     }
 /**
 * 
@@ -103,7 +102,7 @@ public class Curp {
  */
 
     static String obtenerPrimerLetraYVocalInterna(String palabra) {
-        char[] letras = {palabra.charAt(0), primerVocalInterna(palabra)};
+        char[] letras = {palabra.charAt(0), obtenerPrimerVocalInterna(palabra)};
 
         return new String(letras);
     }
@@ -139,7 +138,7 @@ public class Curp {
 * return: la primera letra consonante interna del primer apellido o del apellido paterno.
  */
     static char obtenerPrimerConsonanteInternaPrimerApellido(String primerApellido) {
-        return primerConsonanteInterna(primerApellido);
+        return obtenerPrimerConsonanteInterna(primerApellido);
     }
 /**
 * Obtiene la primer consonante interna del segundo apellido o del apellido materno
@@ -147,7 +146,7 @@ public class Curp {
 * return: la primer letra consonante dentro del segundo apellido o del apellido materno.
  */
     static char obtenerPrimerConsonanteInternaSegundoApellido(String segundoApellido) {
-        return primerConsonanteInterna(segundoApellido);
+        return obtenerPrimerConsonanteInterna(segundoApellido);
     }
 /**
 * Obtiene fecha de nacimiento partiendo del dia, mes, año
